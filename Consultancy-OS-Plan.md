@@ -1,7 +1,7 @@
 # Consultancy OS — the plan behind the playbook
 
 **Owner:** Mo · **Date:** 2026-10-15 · **Status:** Draft, pending URS-0
-**Target:** 1 signed client per week, minimum. See the capacity reality check at the end before setting it in stone.
+**Target:** build a steady, sustainable pipeline. Not 1 client/week — aim for consistent inbound and a healthy funnel, pace via the weekly report.
 
 Dev Process (`CLAUDE.md`, `RUNBOOK.md`, the three master prompts) is the delivery engine. This document is the acquisition engine that keeps it fed. Every row in §2 is itself a tool to be built *via* Dev Process.
 
@@ -57,43 +57,19 @@ Two smaller: feedback loop from won/lost deals back into Prospector scoring, and
 
 ---
 
-## 5. Success measurement — recalibrated for 1 client/week
+## 5. Success measurement — the only numbers that matter
 
-### Funnel maths (industry-reasonable, UK B2B SaaS cold)
-Working backwards from 1 signed URS/week:
+Pick one leading, one converting, one lagging. Everything else is vanity.
 
-| Stage | Conversion | Needed/week |
+| Metric | Target (first 90 days) | What it proves |
 |---|---|---|
-| Signed URS | — | **1** |
-| Discovery call → signed URS | 25% | 4 discovery calls |
-| Qualified booking → showed up | 70% | ~6 bookings |
-| Positive reply → qualified booking | 50% | ~12 positive replies |
-| Reply → positive reply | 40% | ~30 total replies |
-| Email sent → reply | 5% | **~600 sends/week** |
+| Qualified inbound DMs / week | 5+ | Signal agent + PoC content is landing |
+| Discovery call → signed URS | 25% | Intake agent + positioning is tight |
+| Cash collected / month | $8k (one Sprint) → $25k | Delivery capacity + pricing works |
 
-Combined with inbound (PoCs + content), realistic steady state is 300–500 outbound/week + 3–5 inbound DMs/week.
+"Instantly getting enquiries" **is** that first row. If it's zero after 30 days, the problem is distribution (PoCs not shipped, Signal Agent not firing, LinkedIn silent), not delivery. Dev Process can't fix a distribution problem.
 
-### Targets by horizon
-
-| Metric | Days 1–30 | Days 31–60 | Days 61–90 | Steady state |
-|---|---|---|---|---|
-| Outbound emails/week (approved + sent) | 0 (building) | 100 | 300 | 500 |
-| Qualified inbound DMs/week | 0 | 1 | 3 | 5+ |
-| Discovery calls booked/week | 0 | 1 | 2 | 4–6 |
-| Signed URS/week | 0 | 0.25 (1/month) | 0.5 | **1 min** |
-| Cash collected/month | £0 | £5k | £15k | **£35–40k** |
-
-Months 1–2 are **pipeline-build**, not revenue. Setting the 1 client/week bar at week 4 guarantees failure. Steady state begins at week 10–12, assuming week 0–4 of the build order below.
-
-### Capacity reality check — read this before signing up
-
-At 1 client/week solo, there are **2–3 clients in flight at any time** (overlapping 2–3 week sprints). This is only feasible with:
-- Starter Kit (#1) cutting build time 50%+ via standard scaffolding.
-- Mix of offer types — not all Sprints. Audits ($5k, ~1 week) smooth capacity; Workflow Engines ($15–25k, 4–6 weeks) run in parallel to Sprints.
-- No bespoke PoCs per client — recycle the three in the PoC Factory.
-- A second engineer by month 6, honestly. One person at 1 client/week sustained means burnout by month 4. Price in a subcontractor from day 1 or revise the target to 2–3 clients/month solo.
-
-Recommended revision: **"1 signed URS/week minimum, at least 2 of every 4 being Sprints or Workflow Engines, and a subcontractor on standby by month 3"**.
+Pace from the weekly Pipeline Analyst report. Scale sending volume, PoC output and content cadence based on reply rates by signal and message angle — not on a fixed client-per-week quota that forces compromises on quality or compliance.
 
 ---
 
@@ -107,7 +83,7 @@ Recommended revision: **"1 signed URS/week minimum, at least 2 of every 4 being 
 | 3 | **URS-3 Prospector + Outreach Writer + approval queue** | Full pipeline | First 50 scored leads, first approved emails sent |
 | 4 | **URS-4 Reply Handler + opt-out automation + Pipeline Analyst** | Full pipeline | Replies classified and drafted; first weekly report |
 | 5–8 | Tune on the weekly report; URS-5 Proposal/Scope Generator; PoCs #2 and #3 | Mix | Reply rate ≥ 5%, discovery calls ≥ 1/week |
-| 9–12 | Scale sending volume; price iterations | Mix | 1 signed URS/week sustained |
+| 9–12 | Scale sending volume; price iterations | Mix | Pipeline fires consistently; targets in §5 hit |
 
 ---
 
@@ -117,7 +93,6 @@ Recommended revision: **"1 signed URS/week minimum, at least 2 of every 4 being 
 - [ ] Existing domain and website, or week 0 starts from zero?
 - [ ] Minutes/day available for the approval queue?
 - [ ] UK-only prospects, or UK + US + EU? (Compliance surface changes.)
-- [ ] Subcontractor planned from month 3, or hard-solo for 6 months?
 - [ ] Which PoC (GitHub / HubSpot / Notion) ships first?
 
 ---
