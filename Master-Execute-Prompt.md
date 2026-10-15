@@ -54,6 +54,8 @@ Each rule below names a way AI-executed builds rot. Violating any of them is a f
 
 **E10 — Report honestly.** If something was skipped, is partially done, or is blocked, the slice report says so in plain words. An honest "blocked on deviation D-03" beats a false "done" every time — the false "done" costs ten times more when discovered, because everything built on it is suspect.
 
+**E11 — External side-effects ship behind an approval queue by default.** Any slice whose code sends email, DMs, posts to a social platform, calls a paid API, writes to a shared external system, books a calendar slot, triggers a webhook, or otherwise reaches outside this system DOES NOT send directly on the first slice that produces the content. The slice ships: (1) code that produces the drafted action and writes it to an approval-queue table, (2) UI that lets a human review, approve or reject, (3) a sender that fires only on approval. Autonomous sending (removing the human) is a separate, later slice that the plan explicitly names, with its bound stated (max N per hour, per contact, per campaign, per domain) and a kill switch. "The queue felt mature so I removed it" is the exact drift this rule exists to stop: removal goes through the Deviation Protocol or does not happen.
+
 ### THE BUILD LEDGER — `BUILD-STATUS.md`
 
 The first session creates it in the repo root; it is the single source of truth for resuming. It contains, and only contains:

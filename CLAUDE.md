@@ -23,6 +23,10 @@ each step is in `Development-Process.md`. The steps, each with a gate before mov
 2. **Prototype** from `Phase 2 prompt-claude.md`. One canonical path, Invented-to-Render register.
 3. **Architecture** from `Phase 3 Technical Architecture & Data Flow.md`. Every choice names the
    option it beat and the profile fact that decided it.
+3.5. **Compliance review** when the system sends to third parties, handles personal data, or sits
+   under a regulatory regime (PECR, GDPR, CAN-SPAM, etc.). Legitimate Interests Assessment, data
+   map, suppression plan, retention policy and privacy notice committed under `docs/compliance/`.
+   Pure read-only or ephemeral-processing tools skip.
 4. **Plan** from `Master-Build-Prompt.md` with all five inputs and the Self-Audit Appendix.
 5. **Test** from `Master-Test-Prompt.md`. No P0s, no journey-blocking findings. One remediation
    round, then back to step 1.

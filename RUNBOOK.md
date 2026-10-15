@@ -30,6 +30,16 @@ Follow top to bottom. Don't skip a gate. Full detail: `Development-Process.md`.
 - Fill Section 0 first; take the FIRST shape row that fits; run the best-choice challenge on every layer.
 - ☑ **Gate:** every choice names its loser and the profile fact · shape ratified by you · §8 (open questions) empty.
 
+## 3.5 — Compliance review (gate before Plan)
+- **Applies when** the system sends to third parties, handles personal data, or sits under a regulatory regime (PECR, UK/EU GDPR, CAN-SPAM, HIPAA, PCI, etc.). Pure read-only or ephemeral-processing tools skip this step.
+- Produce, dated and committed under `docs/compliance/`:
+  1. **Legitimate Interests Assessment** (or legal basis note).
+  2. **Data map** — what data, from where, stored where, read by which component, written to which, retained how long.
+  3. **Opt-out / suppression plan** — how the request arrives, where it is stored, how every downstream slice checks it inside its send transaction.
+  4. **Retention policy** — per data class, with the mechanism that enforces it.
+  5. **Privacy notice** — for any public surface.
+- ☑ **Gate:** all five docs committed · adviser consulted OR risk explicitly accepted in writing · every planned send/write has its compliance anchor named · URS §8 (data check) consistent with the data decisions made here.
+
 ## 4 — Plan
 - New session → paste `Master-Build-Prompt.md` + five inputs:
   1. approved URS · 2. prototype (with register) · 3. keys.md · 4. hardening playbook · 5. Phase 3 doc.

@@ -2,6 +2,8 @@ Act as an expert frontend engineer and UI/UX designer. I am going to provide you
 
 Your task is to build a single-file, highly polished, fully functional frontend prototype using HTML5, Tailwind CSS (via CDN), and Vanilla JavaScript for interactivity.
 
+**Stack exception for web-app shape.** The default above is a single HTML file, right for simple tools (CLIs, calculators, light utilities) where "double-click and it opens" matters for the customer walkthrough. If Phase 3's shape decision is a **web app**, build the prototype in the same framework the real app will use (e.g. Next.js + Tailwind + TypeScript + shadcn/ui): zero rewrite in Phase 4, same mental model for the stakeholder. Still a prototype though: one canonical `prototype/` directory named in the URS header, UI only (no API routes, no DB, no auth, no real external calls), every stub tagged `// MOCK:`, in-memory data only, buttons that would send side effects `console.log` + toast, reload returns to clean state. The guidelines below still apply; items 3-5 mean "styled with the chosen framework's conventions" instead of "Tailwind via CDN".
+
 Here are the strict guidelines for the build:
 1. DESIGN SYSTEM: Use a modern, clean, professional enterprise aesthetic (think Stripe or Vercel dashboard). Use Tailwind classes for a clean layout, intuitive spacing, and subtle shadows/borders.
 2. FUNCTIONALITY: Implement all core functional requirements (F-requirements) listed in the URS using interactive JavaScript so the UI actually "works" (e.g., dynamic calculations, form validations, tab switching, or state changes when buttons are clicked).
