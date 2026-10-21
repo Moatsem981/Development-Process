@@ -10,7 +10,7 @@
 | Step | What | Artifact | Gate before moving on |
 |---|---|---|---|
 | **Phase 1** | URS — interview the customer, fill the template | Approved URS | §9 empty, every (I) confirmed at read-back, named approver signed. **No name, no build.** |
-| **Phase 2** | Design spec — give the URS to Claude with the Phase 2 prompt | Working HTML prototype | Customer walked through it; corrections captured back into the URS; Invented-to-Render register written |
+| **Phase 2** | Design spec — give the URS to Claude with the Phase 2 prompt | Working Next.js prototype | Customer walked through it; corrections captured back into the URS; Invented-to-Render register written |
 | **Phase 3** | Architecture — fill the Phase 3 doc against the URS | Architecture & data-flow doc | Exit criteria met; shape decision human-ratified; open questions empty |
 | **Compliance review** *(when applicable)* | LIA, data map, suppression plan, retention policy, privacy notice | `docs/compliance/*.md` dated and committed | Every planned send/write has its compliance anchor; adviser consulted or risk accepted in writing. Applies when the system sends to third parties, handles personal data, or sits under a regulatory regime |
 | **Plan** | Master Build Prompt + all inputs | Implementation plan (with Self-Audit Appendix) | Appendix present and complete |
@@ -24,13 +24,13 @@
 
 **Phase 1 — URS.** The highest-leverage step. Every deep defect in the R&D run traced back to an unsigned, ambiguous URS: misidentified domain, invented taxonomy, ambiguous rules. The template's discipline — (Q)/(I) tags, banned words, read-back, cold test — is the control. The gate is the value: never start Phase 2 against a Draft.
 
-**Phase 2 — Prototype.** It shows me what I'm building and shows the customer exactly how the product will work before engineering money is spent. Its rules: mark every mock (`// MOCK:`); list every invented business rule (thresholds, limits, taxonomies, formulas the URS didn't state) in an **Invented-to-Render register** — invented rules look identical to real ones once in code; keep **one canonical file**, path recorded in the URS header; walk the customer through it and capture corrections as (Q).
+**Phase 2 — Prototype.** It shows me what I'm building and shows the customer exactly how the product will work before engineering money is spent. It is always built in Next.js (owner's rule, 16/10/2026), so its components carry into the real build instead of being rewritten; inside an existing Next.js app it lives in the tool's home and the app's real shell. Its rules: mark every mock (`// MOCK:`); list every invented business rule (thresholds, limits, taxonomies, formulas the URS didn't state) in an **Invented-to-Render register** — invented rules look identical to real ones once in code; keep **one canonical file**, path recorded in the URS header; walk the customer through it and capture corrections as (Q).
 
 **Phase 3 — Architecture.** The profile (7 questions) decides the shape; the shape decides everything downstream, including how heavy the plan needs to be. The Master Build Prompt's full apparatus (Docker, Postgres, RLS, backups) applies to the web-app shape only — lighter shapes get the same *principles* at light-mode depth. Every choice records the alternative it beat and the profile fact that decided it. Any URS requirement the architecture contradicts goes back to the stakeholder as a named decision.
 
 **Compliance review** *(when applicable).* The one gate that lives between architecture and plan rather than inside a prompt. The architecture decides what data moves where; before planning the slices that move it, the legal and regulatory surface is written down (LIA, data map, suppression plan, retention policy, privacy notice) and either an adviser has signed off or the risk has been named and accepted. Pure read-only or ephemeral-processing tools skip it. Everything that sends to third parties, handles personal data, or sits under PECR/GDPR/CAN-SPAM/HIPAA/PCI goes through it — because a compliance mistake caught in Phase 4 costs a redraft; one caught after Phase 6 costs a domain reputation, a fine, or a client.
 
-**Plan.** One generation with the converged Master Build Prompt, fed all five inputs (URS, prototype + register, keys.md, hardening playbook, Phase 3 doc). Its Defect Register (R1–R14) encodes every defect class previous projects paid for, including R14 — eval harnesses for LLM outputs and prompts as data with provenance — for any slice that calls a model. Its Self-Audit Appendix forces the journey traces, concurrency trace, recovery traces, and guard-context table to be written before delivery.
+**Plan.** One generation with the converged Master Build Prompt, fed all five inputs (URS, prototype + register, `keys.md`, `pre-ship-hardening.md`, Phase 3 doc). Its Defect Register (R1–R14) encodes every defect class previous projects paid for, including R14 — eval harnesses for LLM outputs and prompts as data with provenance — for any slice that calls a model. Its Self-Audit Appendix forces the journey traces, concurrency trace, recovery traces, and guard-context table to be written before delivery.
 
 **Test.** One mandatory adversarial pass — an hour of review against days of building from a flawed plan. **Generation without verification is never acceptable**, because the prompt carries forward defect *classes* but can never pre-encode project-specific *instances* (a misidentified domain, two correct mechanisms with incompatible stage assumptions). After every report: fold any NEW defect class into the Build Prompt's Register. That's what makes the process compound — each project's review improves every future project's first draft.
 
@@ -70,8 +70,9 @@
 | `Master-Build-Prompt.md` | Generates the implementation plan (v4, Register R1–R13) |
 | `Master-Test-Prompt.md` | Adversarially simulates the plan (v4) |
 | `Master-Execute-Prompt.md` | Executes the verified plan slice by slice, drift-free (v1, anti-drift rules E1–E10) |
+| `START-HERE.md` | Setting the process up in a new project, and what to expect |
 | `RUNBOOK.md` | The one-page "how to run it" |
-| `keys.md` + hardening playbook | The engineering standard both prompts enforce |
+| `keys.md` (+ its short form `keys-core.md`) and `pre-ship-hardening.md` | The engineering standard both prompts enforce. Copied on 16/10/2026 so the process carries its own inputs (the playbook's references to the project it came from were made generic); this folder's copies are the ones to use and update |
 | `Progress-Documentation.md` | The mandatory record step: the two records, the two enforcement layers, the CLAUDE.md rule block |
 | `WORKLOG-entry-template.md` | Narrative entry template (the layout, and why not to invent a new one) |
 | `CODE_WORKLOG-template.md` | Per-unit index template: CW-id conventions, field definitions, reverse-index structure |

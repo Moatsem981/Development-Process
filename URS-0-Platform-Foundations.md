@@ -129,4 +129,4 @@ Items that will come up repeatedly across URS-1..6, decided here once:
 
 ---
 
-*Light mode considered but declined.* Platform foundations is the web-app shape per Phase 3's decision table, with 10 FRs and a non-trivial trust boundary. The full URS gate applies; the Phase 2 prototype uses the web-app stack exception (Next.js, not single-file HTML).
+*Light mode considered but declined.* Platform foundations is the web-app shape per Phase 3's decision table, with 10 FRs and a non-trivial trust boundary. The full URS gate applies; the Phase 2 prototype is built in Next.js, as every prototype is (owner's rule, 16/10/2026).
