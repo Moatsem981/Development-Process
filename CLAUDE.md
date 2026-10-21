@@ -1,8 +1,8 @@
 # CLAUDE.md: how we work
 
 This file is the standing set of development rules for every tool built with this process. It
-was extracted on 2026-09-18 from the rules Claude follows on the MotionTech AI Platform, with the
-platform-specific commands and package names taken out so the rules apply to any repository.
+was extracted on 2026-09-18 from the rules followed on a production internal platform, with every
+project-specific command, name and package taken out so the rules apply to any repository.
 Copy it into a new project's `CLAUDE.md` at step 0 of the `RUNBOOK.md`, adjust paths and directory
 names to that repository, and do not soften anything.
 
@@ -20,7 +20,8 @@ each step is in `Development-Process.md`. The steps, each with a gate before mov
 0. **Records** set up before any code: `WORKLOG.md`, `CODE_WORKLOG.md`, the worklog gate wired into
    pre-push, this file pasted into the repo.
 1. **URS** from `Phase 1 URS-template.md`. No name in the header, no build.
-2. **Prototype** from `Phase 2 prompt-claude.md`. One canonical path, Invented-to-Render register.
+2. **Prototype** from `Phase 2 prompt-claude.md`, always in Next.js (owner, 16/10/2026). One canonical
+   path, Invented-to-Render register.
 3. **Architecture** from `Phase 3 Technical Architecture & Data Flow.md`. Every choice names the
    option it beat and the profile fact that decided it.
 4. **Plan** from `Master-Build-Prompt.md` with all five inputs and the Self-Audit Appendix.
@@ -70,7 +71,7 @@ Standing rules of the process:
   it back and say plainly that you moved it.
 
 - **Check for a running dev server before anything that changes the tree.** For example
-  `netstat -ano | grep :3000`. A live server plus a branch switch means the browser shows a
+  `netstat -ano | grep :<dev port>`. A live server plus a branch switch means the browser shows a
   different branch with no warning. LISTENING is not serving: prove a server is serving with a real
   request, not with the port list.
 
@@ -137,8 +138,8 @@ Standing rules of the process:
   handler, not from client UI.
 - **Multi-tenancy.** Default-deny row-level security with a schema per tool is the isolation
   guarantee. The RLS test suite is a gate even where it is not part of the local aggregate gate.
-- **Source of truth.** The upstream system (HubSpot for projects and deals) is the source of
-  truth. Local tables store derived, regenerable snapshots and identifier-only rows, never a
+- **Source of truth.** The upstream system of record (the CRM, the ERP, whatever owns the
+  data) is the source of truth. Local tables store derived, regenerable snapshots and identifier-only rows, never a
   mirror of a mutable upstream field.
 - **Migrations are forward-only and versioned.**
 - **Do NOT reset the database casually.** A reset wipes the local users and admin. When the local
@@ -152,7 +153,7 @@ Standing rules of the process:
 
 - **Branch model.** `main` is branch-protected trunk: never push or force-push to it. Changes land
   via reviewed, CI-green PRs. Feature branches are `<author>/<topic>`, one concern per branch, one
-  branch per PR. A local integration branch (`moatsem/working`) is never PR'd or merged.
+  branch per PR. A local integration branch (`<author>/working`) is never PR'd or merged.
 - **Commits.** Conventional Commits (`type(scope): imperative subject`). Stage files **by name**,
   never `git add -A` or `git add .`. Do not amend or force-push a pushed commit; add a new commit.
   Every commit runs the secrets scanner (gitleaks) pre-commit on staged changes.
@@ -236,6 +237,55 @@ Full reasoning and the two enforcement layers: `Progress-Documentation.md`.
     this rule got written, on 2026-09-17, against a screen the reviewer could not read.
 - **Prototype mocks are marked.** Every mock in a prototype carries `// MOCK:`; before ship,
   `grep MOCK:` returns zero hits.
+
+---
+
+## Working agreement (how to work with the owner)
+
+These rules come from working this process with its owner across real projects. They apply to every
+project, whatever its stack. "The owner" is the person who commissioned the work and approves its gates.
+
+**Commits, pushes and pull requests**
+- Never commit without the owner's yes. Offer the commit, say what is in it, and wait.
+- Never push. Give the owner the exact command and let them run it.
+- Before a push or a pull request, show the change running (the exact local address of the page or
+  command that shows it) and wait for the owner's look.
+- One pull request at a time. The next starts from the new main only after the last one merged.
+- Before editing a pull request, check it is still open. A merged pull request takes no more edits;
+  later commits need a new one with a full description.
+
+**Checks**
+- Run every check in the quality gate locally, including the ones CI would skip for this change. A red
+  check is fixed; "it is red on main too" is not an answer.
+- Before saying "fixed", reproduce the original problem with the owner's own steps in the running
+  application, then show it gone. A unit test in isolation is not that proof.
+
+**Security**
+- Never weaken security for a feature, not by one setting. When a design would remove a control, find
+  one that keeps it, and look for a way to tighten instead.
+
+**Building what was asked**
+- When the owner describes a screen in plain words (the button's name, where it sits, what appears),
+  that description is the specification. Build it literally. If something blocks it, say so in one line
+  and keep their flow; never substitute a cleverer design.
+- New pages and panels use the full width of the screen, not a narrow centred column, unless the owner
+  asks otherwise.
+- A prototype for a tool inside an existing application is built in that application's real shell and
+  look, and compared by screenshot with the live pages before the owner sees it.
+
+**Cold tests and reviews**
+- A cold test is ONE run. Split the document into parts, give each part to its own fresh tester at the
+  same time, plus one tester reading the whole set for contradictions. Collect every question, answer
+  them all in one pass, log the run in the document, and stop. Run it again only if the owner asks: a
+  strict reader always finds another layer, so looping never reaches zero.
+
+**When the owner is away**
+- When the owner says to carry on without them, choose the most defensible default at each decision,
+  record every default where they will read it, and keep going. Never sign an approval, a gate or a name
+  on their behalf; stop at the gate and leave it ready for them.
+
+**The process files themselves**
+- This folder is read-only to the assistant. Change it only when the owner asks, and record what changed.
 
 ---
 

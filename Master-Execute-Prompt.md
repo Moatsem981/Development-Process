@@ -5,7 +5,7 @@
 1. The verified implementation plan (the single source of authority).
 2. The final Plan Simulation & Risk Report, including its Certification Condition.
 3. The approved URS (for acceptance criteria only — the plan already encodes it).
-4. `keys.md`.
+4. `keys.md` (in the process folder; `keys-core.md` is its short form).
 5. `BUILD-STATUS.md` from the repo root (created by the first session; every later session resumes from it).
 
 A build spans many sessions. This prompt makes every session behave identically: read the ledger, execute one slice with evidence, update the ledger, stop.

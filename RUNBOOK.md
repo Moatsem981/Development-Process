@@ -20,6 +20,7 @@ Follow top to bottom. Don't skip a gate. Full detail: `Development-Process.md`.
 
 ## 2 — Prototype
 - New Claude session → paste `Phase 2 prompt-claude.md` + the approved URS.
+- **Every prototype is built in Next.js** (owner, 16/10/2026), never a single HTML file. Inside an existing Next.js app it lives in the tool's own home, in the app's real shell; otherwise it is one new Next.js app.
 - Save the prototype to ONE canonical path; record that path in the URS header.
 - Add the **Invented-to-Render register** at the bottom: every rule/threshold/taxonomy the URS didn't state, with an ID and an owner.
 - Walk the customer through it; capture corrections back into the URS as (Q).
@@ -32,7 +33,7 @@ Follow top to bottom. Don't skip a gate. Full detail: `Development-Process.md`.
 
 ## 4 — Plan
 - New session → paste `Master-Build-Prompt.md` + five inputs:
-  1. approved URS · 2. prototype (with register) · 3. keys.md · 4. hardening playbook · 5. Phase 3 doc.
+  1. approved URS · 2. prototype (with register) · 3. `keys.md` (this folder; `keys-core.md` is the short form) · 4. `pre-ship-hardening.md` (the hardening playbook, this folder) · 5. Phase 3 doc.
 - Light shapes (single HTML / script / CLI): tell it "light mode — apply the Register's principles at the depth this shape warrants."
 - ☑ **Gate:** plan has all sections + the Self-Audit Appendix (journeys, concurrency, recovery, manifest, contradictions, guard-context table).
 
@@ -45,11 +46,11 @@ Follow top to bottom. Don't skip a gate. Full detail: `Development-Process.md`.
 - Fold any NEW defect class (the report's final paragraph) into `Master-Build-Prompt.md`'s Register.
 
 ## 6 — Execute build
-- New session → paste `Master-Execute-Prompt.md` + inputs: the verified plan · the final risk report (with Certification Condition) · the URS · keys.md · `BUILD-STATUS.md` (first session creates it).
+- New session → paste `Master-Execute-Prompt.md` + inputs: the verified plan · the final risk report (with Certification Condition) · the URS · `keys.md` (this folder) · `BUILD-STATUS.md` (first session creates it).
 - One slice per cycle: announce → build → verify with real output → report → update ledger. Every later session resumes from `BUILD-STATUS.md`.
 - Plan can't be executed as written? → Deviation Protocol: stop, record, get approval. Never a silent repair.
 - Recycle the prototype as the frontend against a stubbed API first; before ship, `grep MOCK:` = zero hits.
-- Finish with the plan's §8 pre-ship hardening audit + the Certification Condition, item by item; clear blockers; then roll out.
+- Finish with the plan's §8 pre-ship hardening audit (method: `pre-ship-hardening.md`) + the Certification Condition, item by item; clear blockers; then roll out.
 - ☑ **Gate:** all slices done with evidence · deviations resolved or accepted · audit blockers cleared.
 
 ## 7 — Record (every slice, not at the end)
